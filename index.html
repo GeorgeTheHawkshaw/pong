@@ -29,17 +29,31 @@
     var y = canvas.height - 30; //Start Position y
     var dx = 2; //The increment in which the ball moves
     var dy = -2; //The increment in which the  ball moves in the y direction
+    var ballRadius = 20; //Make a variable called BallRadius
+
 
     function drawBall() {
       ctx.beginPath(); //Beginning of instruction
-      ctx.arc(x, y, 10, 0, Math.PI * 2); //Draw a circle at x and y, radius 10, Start angle 0 and End angle 2pi
+      ctx.arc(x, y, ballRadius, 0, Math.PI * 2); //Draw a circle at x and y, radius 10, Start angle 0 and End angle 2pi
       ctx.fillStyle = "#0095DD"; //Make the circle blue
       ctx.fill(); //Fill the circle
       ctx.closePath(); //End of instructions
+
+      ctx.beginPath();
+      ctx.arc(0, 5, 3, 0, Math.PI * 2);
+      ctx.fillStyle = "#0095DD";
+      ctx.fill();
+      ctx.closePath();
     }
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height) //Clear the screen each frame
+      if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) { //If the radius of the ball in the next frame going to be more than the boundary, set the increments to negative values
+        dx = -dx;
+      }
+      if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+      }
       drawBall();
       x += dx; //Increment the position of the ball
       y += dy;

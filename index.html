@@ -134,15 +134,15 @@
     function whoWon() {
       if (scoreRight != scoreLeft) {
         if (scoreRight > scoreLeft) {
-          return "Player 2 Won!"
+          return "Player 2 won with " + scoreRight + " points!"
         } else {
-          return "Player 1 Won!"
+          return "Player 1 won with " + scoreLeft + " points!"
         }
       } else {
         if (x < canvas.width / 2) {
-          return "Player 2 Won!"
+          return "Player 2 won with " + scoreRight + " points!"
         } else {
-          return "Player 1 Won!"
+          return "Player 1 won with " + scoreLeft + " points!"
         }
       }
     }

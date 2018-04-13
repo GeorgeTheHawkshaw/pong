@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Random Project</title>
+  <title>Pong - By Harold Foster</title>
   <!--CSS -->
   <style>
     * {
@@ -48,6 +48,13 @@
     var paddle2Y = paddleY;
     var up2Pressed = false;
     var down2Pressed = false;
+
+    //Score Keeping
+    var scoreLeft = 0;
+    var scoreRight = 0;
+    var textPositionX = 8;
+    var textPositionY = 20;
+    var collisionCounter = 0;
 
     //Key Listeners
     document.addEventListener("keydown", keyDownHandler, false);
@@ -112,26 +119,56 @@
       ctx.closePath();
     }
 
+    function drawScore() {
+      ctx.font = "16px Arial"
+      ctx.fillStyle = "#0095DD";
+      ctx.fillText("Score: " + scoreLeft, textPositionX, textPositionY);
+    }
+
+    function drawScore2() {
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "#0095DD";
+      ctx.fillText("Score: " + scoreRight, canvas.width - 10 * textPositionX, textPositionY)
+    }
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height) //Clear the screen each frame
 
       if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
         dy = -dy;
       } else if (x + dx > canvas.width - ballRadius || x + dx + ballRadius < 0) { //GAME OVER SCREEN
-        alert("Game Over")
+        //alert("Game Over")
         document.location.reload();
       }
 
+
+
+      //Collision Left
       if (x + dx < paddleX + paddleWidth && y > paddleY && y < paddleY + paddleHeight) {
         dx = -dx;
+        scoreLeft++;
+        collisionCounter++;
+        if (collisionCounter % 10 == 0 && collisionCounter != 0) {
+          dx++;
+          dy--;
+        }
       }
 
+      //Collirions Right
       if (x + dx > paddle2X && y > paddle2Y && y < paddle2Y + paddle2Height) {
         dx = -dx;
+        scoreRight++;
+        collisionCounter++;
+        if (collisionCounter % 10 == 0 && collisionCounter != 0) {
+          dx++;
+          dy--;
+        }
       }
       drawBall();
       drawPaddle();
       drawPaddleTwo();
+      drawScore();
+      drawScore2();
       x += dx; //Increment the position of the ball
       y += dy;
 

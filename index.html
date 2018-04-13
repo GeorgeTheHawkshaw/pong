@@ -131,13 +131,30 @@
       ctx.fillText("Score: " + scoreRight, canvas.width - 10 * textPositionX, textPositionY)
     }
 
+    function whoWon() {
+      if (scoreRight != scoreLeft) {
+        if (scoreRight > scoreLeft) {
+          return "Player 2 Won!"
+        } else {
+          return "Player 1 Won!"
+        }
+      } else {
+        if (x < canvas.width / 2) {
+          return "Player 2 Won!"
+        } else {
+          return "Player 1 Won!"
+        }
+      }
+    }
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height) //Clear the screen each frame
 
       if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
         dy = -dy;
       } else if (x + dx > canvas.width - ballRadius || x + dx + ballRadius < 0) { //GAME OVER SCREEN
-        //alert("Game Over")
+
+        alert("GAME OVER: " + whoWon())
         document.location.reload();
       }
 

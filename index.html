@@ -60,6 +60,21 @@
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
 
+    //Color Array
+    const colors = [
+      "#99ff66",
+      "#0066cc",
+      "#cc33ff",
+      "#00cc00",
+      "#ff5050",
+      "#ccff66",
+      "#6600ff",
+      "#666633",
+      "#66ffcc",
+      "#00cc66"
+    ]
+    var color = colors[0];
+
     function keyDownHandler(e) {
       //Left Paddle
       if (e.keyCode == 87) {
@@ -98,7 +113,8 @@
     function drawBall() {
       ctx.beginPath(); //Beginning of instruction
       ctx.arc(x, y, ballRadius, 0, Math.PI * 2); //Draw a circle at x and y, radius 10, Start angle 0 and End angle 2pi
-      ctx.fillStyle = "#99ff66"; //Make the circle blue
+      //ctx.fillStyle = colors[Math.floor(Math.random() * colors.length - 1)]; //Make the circle green
+      ctx.fillStyle = color;
       ctx.fill(); //Fill the circle
       ctx.closePath(); //End of instructions
     }
@@ -121,13 +137,13 @@
 
     function drawScore() {
       ctx.font = "16px Arial"
-      ctx.fillStyle = "#0095DD";
+      ctx.fillStyle = "#1a0d00";
       ctx.fillText("Score: " + scoreLeft, textPositionX, textPositionY);
     }
 
     function drawScore2() {
       ctx.font = "16px Arial";
-      ctx.fillStyle = "#0095DD";
+      ctx.fillStyle = "#1a0d00";
       ctx.fillText("Score: " + scoreRight, canvas.width - 10 * textPositionX, textPositionY)
     }
 
@@ -165,6 +181,7 @@
         dx = -dx;
         scoreLeft++;
         collisionCounter++;
+        color = colors[Math.floor(Math.random() * colors.length - 1)]
         if (collisionCounter % 10 == 0 && collisionCounter != 0) {
           dx++;
           dy--;
@@ -176,6 +193,7 @@
         dx = -dx;
         scoreRight++;
         collisionCounter++;
+        color = colors[Math.floor(Math.random() * colors.length - 1)]
         if (collisionCounter % 10 == 0 && collisionCounter != 0) {
           dx++;
           dy--;

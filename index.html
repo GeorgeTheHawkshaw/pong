@@ -29,11 +29,11 @@
     var y = canvas.height - 30; //Start Position y
     var dx = 2; //The increment in which the ball moves
     var dy = -2; //The increment in which the  ball moves in the y direction
-    var ballRadius = 20; //Make a variable called BallRadius
+    var ballRadius = 10; //Make a variable called BallRadius
 
     var paddleHeight = 75;
     var paddleWidth = 10;
-    var paddleX = (canvas.width - paddleWidth) / 2;
+    var paddleX = (canvas.width - paddleWidth) / 15;
     var paddleY = canvas.height / 3;
     var upPressed = false;
     var downPressed = false;
@@ -74,11 +74,12 @@
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height) //Clear the screen each frame
-      if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) { //If the radius of the ball in the next frame going to be more than the boundary, set the increments to negative values
-        dx = -dx;
-      }
+
       if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
         dy = -dy;
+      } else if (x + dx > canvas.width - ballRadius || x + dx + ballRadius < 0) {
+        alert("Game Over")
+        document.location.reload();
       }
       drawBall();
       drawPaddle();

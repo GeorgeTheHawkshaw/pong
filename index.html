@@ -122,11 +122,11 @@
         document.location.reload();
       }
 
-      if (x + dx < paddleX + paddleWidth) {
+      if (x + dx < paddleX + paddleWidth && y > paddleY && y < paddleY + paddleHeight) {
         dx = -dx;
       }
 
-      if (x + dx > paddle2X) {
+      if (x + dx > paddle2X && y > paddle2Y && y < paddle2Y + paddle2Height) {
         dx = -dx;
       }
       drawBall();

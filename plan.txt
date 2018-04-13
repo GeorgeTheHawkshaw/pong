@@ -1,0 +1,5 @@
+Plans for the pong game:
+Two players, left paddle has W and S keys, right paddle has up and down keys
+Every 7 collisions with a paddle, the ball gets slightly faster
+I need a score count for each players
+And eventually wacky cool effects

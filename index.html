@@ -37,8 +37,6 @@
     var paddleY = canvas.height / 3;
     var upPressed = false;
     var downPressed = false;
-    var rightPressed = false;
-    var leftPressed = false;
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
 
@@ -82,16 +80,15 @@
       if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
         dy = -dy;
       }
-
-      if (upPressed) {
-        paddleY -= 7;
-      } else if (downPressed) {
-        paddleY += 7;
-      }
       drawBall();
       drawPaddle();
       x += dx; //Increment the position of the ball
       y += dy;
+      if (upPressed && paddleY > 0) {
+        paddleY -= 5;
+      } else if (downPressed && paddleY + paddleHeight < canvas.height) {
+        paddleY += 5;
+      }
     }
     setInterval(draw, 10); //Call the draw function every 10 miliseconds
   </script>

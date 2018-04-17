@@ -138,29 +138,17 @@
     function drawScore() {
       ctx.font = "16px Arial"
       ctx.fillStyle = "#1a0d00";
-      ctx.fillText("Score: " + scoreLeft, textPositionX, textPositionY);
+      ctx.fillText("Hits: " + collisionCounter, textPositionX, textPositionY);
     }
 
-    function drawScore2() {
-      ctx.font = "16px Arial";
-      ctx.fillStyle = "#1a0d00";
-      ctx.fillText("Score: " + scoreRight, canvas.width - 10 * textPositionX, textPositionY)
-    }
 
     function whoWon() {
-      if (scoreRight != scoreLeft) {
-        if (scoreRight > scoreLeft) {
-          return "Player 2 won with " + scoreRight + " points!"
-        } else {
-          return "Player 1 won with " + scoreLeft + " points!"
-        }
+      if (x < canvas.width / 2) {
+        return "Player 2 wins!"
       } else {
-        if (x < canvas.width / 2) {
-          return "Player 2 won with " + scoreRight + " points!"
-        } else {
-          return "Player 1 won with " + scoreLeft + " points!"
-        }
+        return "Player 1 wins!"
       }
+
     }
 
     function draw() {
@@ -203,7 +191,6 @@
       drawPaddle();
       drawPaddleTwo();
       drawScore();
-      drawScore2();
       x += dx; //Increment the position of the ball
       y += dy;
 

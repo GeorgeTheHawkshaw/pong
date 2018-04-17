@@ -122,14 +122,9 @@
     function drawScore() {
       ctx.font = "16px Arial"
       ctx.fillStyle = "#0095DD";
-      ctx.fillText("Score: " + scoreLeft, textPositionX, textPositionY);
+      ctx.fillText("Hits: " + collisionCounter, textPositionX, textPositionY);
     }
 
-    function drawScore2() {
-      ctx.font = "16px Arial";
-      ctx.fillStyle = "#0095DD";
-      ctx.fillText("Score: " + scoreRight, canvas.width - 10 * textPositionX, textPositionY)
-    }
 
     function whoWon() {
       if (x < canvas.width / 2) {
